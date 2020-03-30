@@ -33,5 +33,19 @@ var Tree = function(value) {
   this.children = [];
 };
 
+Tree.prototype.addChild = function(value) {
+  var child = new Tree(value);
+  this.children.push(child);
+};
 
+Tree.prototype.map = function(mapping) {
+  var mapTree = new Tree(mapping(this.value)) // we should not modify the original tree
+  var mapChildreen = mapTree.children  
+ 
+  for(var i = 0; i < this.children.length; i++) {
+  mapChildreen.push(mapping(this.children[i]))// we need to modify the original tree's childreen and put them inside the new mapped tree without touching the original tree 
+   
+ }
 
+ return mapTree
+}
